@@ -631,7 +631,7 @@ EXPORT_SYMBOL(mark_buffer_dirty_inode_sync);
  *
  * The caller must hold lock_page_memcg().
  */
-void __set_page_dirty(struct page *page, struct address_space *mapping,
+static void __set_page_dirty(struct page *page, struct address_space *mapping,
 			     int warn)
 {
 	unsigned long flags;
@@ -645,7 +645,6 @@ void __set_page_dirty(struct page *page, struct address_space *mapping,
 	}
 	spin_unlock_irqrestore(&mapping->tree_lock, flags);
 }
-EXPORT_SYMBOL_GPL(__set_page_dirty);
 
 /*
  * Add a page to the dirty page list.
